@@ -1,209 +1,140 @@
-/* yyui2.0  by yuyun 2022.08.09 */
+/* yyui3.0  by yuyun 2022.08.15 */
 *{ margin:0px ; padding:0px;   }
-
+html, body{ max-width:100%; }
 input,button,select,option,textarea{outline: none;} /*去掉聚焦时的蓝框*/
 div,ul,li{ list-style-type:none;}
-
-input {-webkit-appearance:none; /*去除input默认样式，尤其是iphone/pad*/}
-textarea {-webkit-appearance:none; /*去除input默认样式，尤其是iphone/pad*/}
-
-/* placeholder的颜色 */
-.yyui_input input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {   color: #cacaca;}
-.yyui_input input:-moz-placeholder, textarea:-moz-placeholder {color:#cacaca;}
-.yyui_input input::-moz-placeholder, textarea::-moz-placeholder {color:#cacaca;}
-.yyui_input input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#cacaca;}
-
-/* 本css分成两大部分：手机端与电脑端 ，分别定义 */
-@media screen and (max-width: 1028px){
-	/* 手机、pad */
-	.yyui_btnbai,   .yyui_btnlan,   .yyui_btnhong,   .yyui_btnlv,   .yyui_btnhuang,   .yyui_btnjinyong, .yyui_input,   .yyui_input_sm,  .yyui_input_jinyong ,.yyui_file_show_part ,	.yyui_textarea,  .yyui_select,  .yyui_checkbox,  .yyui_radio,    .yyui_date , .yyui_datetime ,.yyui_radio_checkbox>val, .yyui_radio_checkbox_lan>val, .yyui_radio_checkbox_lv>val, .yyui_input_leftside_icon  { font-size:13px;}	
-	.yyui_btnbai_sm,   .yyui_btnlan_sm,   .yyui_btnhong_sm,   .yyui_btnlv_sm,   .yyui_btnhuang_sm,   .yyui_btnjinyong_sm { font-size:13px;}	
-	.yyui_btnbai_xs,   .yyui_btnlan_xs,   .yyui_btnhong_xs,   .yyui_btnlv_xs,   .yyui_btnhuang_xs,   .yyui_btnjinyong_xs { font-size:11px;}	
-}
-@media only screen and (min-width: 1029px){
-	/* 电脑PC */
-	.yyui_btnbai,   .yyui_btnlan,   .yyui_btnhong,   .yyui_btnlv,   .yyui_btnhuang,   .yyui_btnjinyong, .yyui_input,   .yyui_input_sm,  .yyui_input_jinyong ,.yyui_file_show_part ,	.yyui_textarea,  .yyui_select,  .yyui_checkbox,  .yyui_radio,    .yyui_date , .yyui_datetime ,.yyui_radio_checkbox>val, .yyui_radio_checkbox_lan>val, .yyui_radio_checkbox_lv>val, .yyui_input_leftside_icon  { font-size:13px;}	
-	.yyui_btnbai_sm,   .yyui_btnlan_sm,   .yyui_btnhong_sm,   .yyui_btnlv_sm,   .yyui_btnhuang_sm,   .yyui_btnjinyong_sm { font-size:13px;}	
-	.yyui_btnbai_xs,   .yyui_btnlan_xs,   .yyui_btnhong_xs,   .yyui_btnlv_xs,   .yyui_btnhuang_xs,   .yyui_btnjinyong_xs { font-size:11px;}	
-}
-
+td,div{font-size:14px;}
 
 /*栅格*/
 .yyui-row:after,.yyui-row:before{content:"";display:block;clear:both}  /* 外层容器yyui-row*/
+.yyui-row > div { float:left;  box-sizing:border-box; min-height:5px; } /*列col通用css*/
+.yyui-row-space > div { box-sizing:border-box; padding-right:10px; }   /*row 的首层列col距右10像素 */
 .yyui-top {vertical-align:top;} /*外层容器内的元素（即各栅格列）靠上对齐*/
+
+.yyui-lt{text-align:left; box-sizing:border-box; }
 .yyui-left{text-align:left; box-sizing:border-box; }
 .yyui-left5{text-align:left; box-sizing:border-box; padding-left:5px; }
 .yyui-left8{text-align:left; box-sizing:border-box; padding-left:8px; }
-.yyui-right{text-align:right; box-sizing:border-box; }
+
+.yyui-rt ,.yyui-right, .right{text-align:right; box-sizing:border-box; } /*常用于标题居右*/
+.yyui-rt5{text-align:right; box-sizing:border-box; padding-right:5px; }
+.yyui-rt8{text-align:right; box-sizing:border-box; padding-right:8px; }
+.yyui-rt10{text-align:right; box-sizing:border-box; padding-right:10px; }
 .yyui-right5{text-align:right; box-sizing:border-box; padding-right:5px; }
 .yyui-right8{text-align:right; box-sizing:border-box; padding-right:8px; }
+.yyui-right10{text-align:right; box-sizing:border-box; padding-right:10px; }
 @media screen and (max-width: 1028px){
 	/* 手机、pad */
-	.yyui-m0{ float:left; display:none;}
-	.yyui-m1{ float:left; display:inline-block; width:4.166%;}
-	.yyui-m2{ float:left; display:inline-block; width:8.333%;}
-	.yyui-m3{ float:left; display:inline-block; width:12.5%;}
-	.yyui-m4{ float:left; display:inline-block; width:16.666%;}
-	.yyui-m5{ float:left; display:inline-block; width:20.833%;}
-	.yyui-m6{ float:left; display:inline-block; width:25%;}
-	.yyui-m7{ float:left; display:inline-block; width:29.166%;}
-	.yyui-m8{ float:left; display:inline-block; width:33.333%;}
-	.yyui-m9{ float:left; display:inline-block; width:37.5%;}
-	.yyui-m10{ float:left; display:inline-block; width:41.666%;}
-	.yyui-m11{ float:left; display:inline-block; width:45.833%;}
-	.yyui-m12{ float:left; display:inline-block; width:50%;}
-	.yyui-m13{ float:left; display:inline-block; width:54.166%;}
-	.yyui-m14{ float:left; display:inline-block; width:58.333%;}
-	.yyui-m15{ float:left; display:inline-block; width:62.5%;}
-	.yyui-m16{ float:left; display:inline-block; width:66.666%;}
-	.yyui-m17{ float:left; display:inline-block; width:70.833%;}
-	.yyui-m18{ float:left; display:inline-block; width:75%;}
-	.yyui-m19{ float:left; display:inline-block; width:79.166%;}
-	.yyui-m20{ float:left; display:inline-block; width:83.333%;}
-	.yyui-m21{ float:left; display:inline-block; width:87.5%;}
-	.yyui-m22{ float:left; display:inline-block; width:91.666%;}
-	.yyui-m23{ float:left; display:inline-block; width:95.833%;}
-	.yyui-m24{ float:left; display:inline-block; width:100%;}
+	.yyui-m0{  display:none; }	
+	.yyui-m1{  display:inline-block;width:4.166%; }	
+	.yyui-m2{ display:inline-block;width:8.333%; }	
+	.yyui-m3{ display:inline-block;width:12.5%; }	
+	.yyui-m4{ display:inline-block;width:16.666%; }	
+	.yyui-m5{ display:inline-block;width:20.833%; }	
+	.yyui-m6{ display:inline-block;width:25%; }	
+	.yyui-m7{ display:inline-block;width:29.166%; }	
+	.yyui-m8{ display:inline-block;width:33.333%; }	
+	.yyui-m9{ display:inline-block;width:37.5%; }	
+	.yyui-m10{ display:inline-block;width:41.666%; }	
+	.yyui-m11{ display:inline-block;width:45.833%; }	
+	.yyui-m12{ display:inline-block;width:50%; }	
+	.yyui-m13{ display:inline-block;width:54.166%; }	
+	.yyui-m14{ display:inline-block;width:58.333%; }	
+	.yyui-m15{ display:inline-block;width:62.5%; }	
+	.yyui-m16{ display:inline-block;width:66.666%; }	
+	.yyui-m17{ display:inline-block;width:70.833%; }	
+	.yyui-m18{ display:inline-block;width:75%; }	
+	.yyui-m19{ display:inline-block;width:79.166%; }	
+	.yyui-m20{ display:inline-block;width:83.333%; }	
+	.yyui-m21{ display:inline-block;width:87.5%; }	
+	.yyui-m22{ display:inline-block;width:91.666%; }	
+	.yyui-m23{ display:inline-block;width:95.833%; }	
+	.yyui-m24{ display:inline-block;width:100%; }
+	.yyui-pc800{ width:100%;} 	.yyui-pc800-else{ width:100%; }
+	.yyui-pc1000{ width:100%;} 	.yyui-pc1000-else{ width:100%; }
 }
 @media only screen and (min-width: 1029px){
 	/* 电脑PC */
-	.yyui-pc0{ float:left; display:none;}
-	.yyui-pc1{ float:left; display:inline-block; width:4.166%;}
-	.yyui-pc2{ float:left; display:inline-block; width:8.333%;}
-	.yyui-pc3{ float:left; display:inline-block; width:12.5%;}
-	.yyui-pc4{ float:left; display:inline-block; width:16.666%;}
-	.yyui-pc5{ float:left; display:inline-block; width:20.833%;}
-	.yyui-pc6{ float:left; display:inline-block; width:25%;}
-	.yyui-pc7{ float:left; display:inline-block; width:29.166%;}
-	.yyui-pc8{ float:left; display:inline-block; width:33.333%;}
-	.yyui-pc9{ float:left; display:inline-block; width:37.5%;}
-	.yyui-pc10{ float:left; display:inline-block; width:41.666%;}
-	.yyui-pc11{ float:left; display:inline-block; width:45.833%;}
-	.yyui-pc12{ float:left; display:inline-block; width:50%;}
-	.yyui-pc13{ float:left; display:inline-block; width:54.166%;}
-	.yyui-pc14{ float:left; display:inline-block; width:58.333%;}
-	.yyui-pc15{ float:left; display:inline-block; width:62.5%;}
-	.yyui-pc16{ float:left; display:inline-block; width:66.666%;}
-	.yyui-pc17{ float:left; display:inline-block; width:70.833%;}
-	.yyui-pc18{ float:left; display:inline-block; width:75%;}
-	.yyui-pc19{ float:left; display:inline-block; width:79.166%;}
-	.yyui-pc20{ float:left; display:inline-block; width:83.333%;}
-	.yyui-pc21{ float:left; display:inline-block; width:87.5%;}
-	.yyui-pc22{ float:left; display:inline-block; width:91.666%;}
-	.yyui-pc23{ float:left; display:inline-block; width:95.833%;}
-	.yyui-pc24{ float:left; display:inline-block; width:100%;}
+	.yyui-pc0{ display:none;  }	.yyui-pc1{ display:inline-block;width:4.166%; }	.yyui-pc2{ display:inline-block;width:8.333%; }	.yyui-pc3{ display:inline-block;width:12.5%; }	.yyui-pc4{ display:inline-block;width:16.666%; }	.yyui-pc5{ display:inline-block;width:20.833%; }	.yyui-pc6{ display:inline-block;width:25%; }	.yyui-pc7{ display:inline-block;width:29.166%; }	.yyui-pc8{ display:inline-block;width:33.333%; }	.yyui-pc9{ display:inline-block;width:37.5%; }	.yyui-pc10{ display:inline-block;width:41.666%; }	.yyui-pc11{ display:inline-block;width:45.833%; }	.yyui-pc12{ display:inline-block;width:50%; }	.yyui-pc13{ display:inline-block;width:54.166%; }	.yyui-pc14{ display:inline-block;width:58.333%; }	.yyui-pc15{ display:inline-block;width:62.5%; }	.yyui-pc16{ display:inline-block;width:66.666%; }	.yyui-pc17{ display:inline-block;width:70.833%; }	.yyui-pc18{ display:inline-block;width:75%; }	.yyui-pc19{ display:inline-block;width:79.166%; }	.yyui-pc20{ display:inline-block;width:83.333%; }	.yyui-pc21{ display:inline-block;width:87.5%; }	.yyui-pc22{ display:inline-block;width:91.666%; }	.yyui-pc23{ display:inline-block;width:95.833%; }	.yyui-pc24{ display:inline-block;width:100%; }
+	.yyui-pc800{ width:800px;} 	.yyui-pc800-else{ width:calc(100% - 800px); }
+	.yyui-pc1000{ width:1000px;} 	.yyui-pc1000-else{ width:calc(100% - 1000px); }
 }
 
+/*重要提示框*/
+.yyui-tipbox{ padding:15px; line-height:2; background-color:#fff3cd; border:1px solid #ffe69c; color:#997404; border-radius:2px;}
+.yyui-tipbox-lv{ padding:15px; line-height:2; background-color:#DFF0D8; border:1px solid #3C763D; color:#3C763D; border-radius:2px;}
+.yyui-tipbox-hong{ padding:15px; line-height:2; background-color:#F2DEDE; border:1px solid #c7254e; color:#c7254e; border-radius:2px;}
 
-/*普通按钮****************************************************************************/
-.yyui_btnbai { box-sizing:border-box; border:1px solid #CCCCCC; height:38px;line-height:38px; color:#333333; background-color:#ffffff;  cursor:pointer; display:inline-block; text-decoration:none;
- padding:0px 18px;-moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px;vertical-align:middle; }
-.yyui_btnbai:hover {background-color:#E6E6E6; border:1px solid #ADADAD; color:#333333; }
+.yyui-inline{ display:inline-block;box-sizing:border-box;}
 
+/*普通按钮（默认蓝色）****************************************************************************/
+.yyui-btn {box-sizing:border-box; border:0 none; height:38px;line-height:38px; color:#ffffff; background-color:#1E9FFF;  cursor:pointer; vertical-align:middle; display:inline-block; text-decoration:none;
+ padding:0px 18px;-moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px; font-size:14px; -webkit-appearance:none; }
+.yyui-btn:hover {background-color:#4BB2FF;  color:#ffffff;}
 
-.yyui_btnlan {box-sizing:border-box; border:0 none; height:38px;line-height:38px; color:#ffffff; background-color:#337AB7;  cursor:pointer; vertical-align:middle; display:inline-block; text-decoration:none;
- padding:0px 18px;-moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px;}
-.yyui_btnlan:hover {background-color:#2E6DA4;  color:#ffffff;}
+.yyui-btn-bai {   border:1px solid #d2d2d2;  color:#333333; background-color:#ffffff;    }
+.yyui-btn-bai:hover {background-color:#E6E6E6; border:1px solid #ADADAD; color:#333333; }
+.yyui-btn-hong {   border:0 none;  color:#ffffff; background-color:#D9534F; }
+.yyui-btn-hong:hover {background-color:#C9302C;  color:#ffffff;}
+.yyui-btn-lv {border:0 none; color:#ffffff; background-color:#5CB85C; }
+.yyui-btn-lv:hover {background-color:#449D44;  color:#ffffff;}
+.yyui-btn-huang {border:0 none;  color:#ffffff; background-color:#F0AD4E; }
+.yyui-btn-huang:hover {background-color:#EC971F;  color:#ffffff;}
+.yyui-btn-jinyong {  border:1px solid #E6E6E6;   color:#C9C9C9; background-color:#FBFBFB;  cursor:not-allowed; }
+.yyui-btn-jinyong:hover {background-color:#FBFBFB; color:#C9C9C9;}
 
-.yyui_btnhong {box-sizing:border-box;  border:0 none; height:38px;line-height:38px; color:#ffffff; background-color:#D9534F;  cursor:pointer;vertical-align:middle; display:inline-block; text-decoration:none;
-  padding:0px 18px;-moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px;}
-.yyui_btnhong:hover {background-color:#C9302C;  color:#ffffff;}
+/*各种尺寸按钮****************************************************************************/
+.yyui-btn-lg {  height:44px;line-height:44px;  padding:0px 25px; }
+.yyui-btn-sm {  height:30px;line-height:30px;  padding:0px 10px; }
+.yyui-btn-xs {  height:22px;line-height:22px;  padding:0px 5px; font-size:11px; }
 
-.yyui_btnlv {box-sizing:border-box; border:0 none; height:38px;line-height:38px; color:#ffffff; background-color:#5CB85C;  cursor:pointer; vertical-align:middle; display:inline-block; text-decoration:none;
-padding:0px 18px;-moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px;}
-.yyui_btnlv:hover {background-color:#449D44;  color:#ffffff;}
-
-.yyui_btnhuang {box-sizing:border-box; border:0 none; height:38px;line-height:38px; color:#ffffff; background-color:#F0AD4E;  cursor:pointer; vertical-align:middle; display:inline-block; text-decoration:none;
-padding:0px 18px;-moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px;}
-.yyui_btnhuang:hover {background-color:#EC971F;  color:#ffffff;}
-
-
-.yyui_btnjinyong {box-sizing:border-box;  border:1px solid #E6E6E6; height:38px;line-height:38px; color:#C9C9C9; background-color:#FBFBFB;  cursor:not-allowed;  display:inline-block; text-decoration:none;
- padding:0px 18px;-moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px;vertical-align:middle;}
-.yyui_btnjinyong:hover {color:#C9C9C9;}
-
-
-/*小按钮small****************************************************************************/
-.yyui_btnbai_sm {box-sizing:border-box;  border:1px solid #CCCCCC; height:30px;line-height:30px; color:#333333; background-color:#ffffff;  cursor:pointer; display:inline-block; text-decoration:none;
- padding:0px 10px; -moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px;vertical-align:middle;}
-.yyui_btnbai_sm:hover {background-color:#E6E6E6; border:1px solid #ADADAD;color:#333333; }
-
-.yyui_btnlan_sm {box-sizing:border-box;  border:0 none; height:30px;line-height:30px; color:#ffffff; background-color:#337AB7;  cursor:pointer; vertical-align:middle;display:inline-block; text-decoration:none;
- padding:0px 10px; -moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px;}
-.yyui_btnlan_sm:hover {background-color:#2E6DA4; color:#ffffff; }
-
-.yyui_btnhong_sm {box-sizing:border-box;  border:0 none; height:30px;line-height:30px; color:#ffffff; background-color:#D9534F;  cursor:pointer; vertical-align:middle;display:inline-block; text-decoration:none;
- padding:0px 10px; -moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px;}
-.yyui_btnhong_sm:hover {background-color:#C9302C; color:#ffffff; }
-
-.yyui_btnlv_sm {box-sizing:border-box;  border:0 none; height:30px;line-height:30px; color:#ffffff; background-color:#5CB85C;  cursor:pointer; vertical-align:middle;display:inline-block; text-decoration:none;
- padding:0px 10px; -moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px;}
-.yyui_btnlv_sm:hover {background-color:#449D44; color:#ffffff; }
-
-.yyui_btnhuang_sm {box-sizing:border-box;  border:0 none; height:30px;line-height:30px; color:#ffffff; background-color:#F0AD4E;  cursor:pointer; vertical-align:middle;display:inline-block; text-decoration:none;
- padding:0px 10px; -moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px;}
-.yyui_btnhuang_sm:hover {background-color:#EC971F; color:#ffffff; }
-
-.yyui_btnjinyong_sm {box-sizing:border-box;  border:1px solid #E6E6E6; height:30px;line-height:30px; color:#C9C9C9; background-color:#FBFBFB;cursor:not-allowed; display:inline-block; text-decoration:none;
- padding:0px 10px;-moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px;vertical-align:middle;}
-.yyui_btnjinyong_sm:hover {color:#C9C9C9;}
-
-
-/*特小按钮small****************************************************************************/
-.yyui_btnbai_xs {box-sizing:border-box; border:1px solid #CCCCCC; height:22px;line-height:22px; color:#333333; background-color:#ffffff;  cursor:pointer; display:inline-block; text-decoration:none;
- padding:0px 5px; -moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px;vertical-align:middle;}
-.yyui_btnbai_xs:hover {background-color:#E6E6E6; border:1px solid #ADADAD;color:#333333; }
-
-.yyui_btnlan_xs {box-sizing:border-box; border:0 none; height:22px;line-height:22px; color:#ffffff; background-color:#337AB7;  cursor:pointer; vertical-align:middle;display:inline-block; text-decoration:none;
- padding:0px 5px; -moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px;}
-.yyui_btnlan_xs:hover {background-color:#2E6DA4; color:#ffffff; }
-
-.yyui_btnhong_xs {box-sizing:border-box; border:0 none; height:22px;line-height:22px; color:#ffffff; background-color:#D9534F;  cursor:pointer; vertical-align:middle;display:inline-block; text-decoration:none;
- padding:0px 5px; -moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px;}
-.yyui_btnhong_xs:hover {background-color:#C9302C; color:#ffffff; }
-
-.yyui_btnlv_xs {box-sizing:border-box; border:0 none; height:22px;line-height:22px; color:#ffffff; background-color:#5CB85C;  cursor:pointer; vertical-align:middle;display:inline-block; text-decoration:none;
- padding:0px 5px; -moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px;}
-.yyui_btnlv_xs:hover {background-color:#449D44; color:#ffffff; }
-
-.yyui_btnhuang_xs {box-sizing:border-box; border:0 none; height:22px;line-height:22px; color:#ffffff; background-color:#F0AD4E;  cursor:pointer; vertical-align:middle;display:inline-block; text-decoration:none;
- padding:0px 5px; -moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px;}
-.yyui_btnhuang_xs:hover {background-color:#EC971F; color:#ffffff; }
-
-.yyui_btnjinyong_xs {box-sizing:border-box; border:1px solid #E6E6E6; height:22px;line-height:22px; color:#C9C9C9; background-color:#FBFBFB;cursor:not-allowed; display:inline-block; text-decoration:none;
- padding:0px 5px;-moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px;vertical-align:middle;}
-.yyui_btnjinyong_xs:hover {color:#C9C9C9;}
+/*按钮组*/
+.yyui-btn-group{ display:table; vertical-align: middle; font-size: 0;}
+.yyui-btn-group .yyui-btn:first-child {
+    border-left: none;
+    border-radius: 2px 0 0 2px;
+}
+.yyui-btn-group .yyui-btn { margin-left: 0!important;
+    margin-right: 0!important;
+    border-left: 1px solid rgba(255,255,255,.5);
+    border-radius: 0;
+}
+.yyui-btn-group .yyui-btn:last-child {
+    border-radius: 0 2px 2px 0;
+}
 
 
 /*输入框****************************************************************************/
-.yyui_input{box-sizing:border-box;vertical-align:middle;
-	border:1px solid #E6E6E6; padding-left:10px; height:38px;  line-height:36px;  
-	-webkit-border-radius: 2px;  border-radius:2px; outline:none;
+/* placeholder的颜色 */
+.yyui-input input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {   color: #cacaca;}
+.yyui-input input:-moz-placeholder, textarea:-moz-placeholder {color:#cacaca;}
+.yyui-input input::-moz-placeholder, textarea::-moz-placeholder {color:#cacaca;}
+.yyui-input input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#cacaca;}
+.yyui-input{box-sizing:border-box;vertical-align:middle; font-size:14px;  width:100%;
+	border:1px solid #E6E6E6; padding-left:10px; padding-right:10px; height:38px;   
+	-webkit-border-radius: 2px;  border-radius:2px; outline:none; -webkit-appearance:none;
 }
-.yyui_input_sm{box-sizing:border-box;vertical-align:middle;
-	border:1px solid #E6E6E6; padding-left:8px; height:30px; line-height:28px;  
-	-webkit-border-radius: 2px;  border-radius:2px; outline:none;
-}
-
-.yyui_input_jinyong{box-sizing:border-box; vertical-align:middle; cursor:not-allowed; background-color:#F9F9F9; 
-	border:1px solid #E6E6E6; padding-left:10px; height:36px;   
-	-webkit-border-radius: 2px;  border-radius:2px; outline:none;
-}
-.yyui_input_jinyong_sm{box-sizing:border-box; vertical-align:middle; cursor:not-allowed; background-color:#F9F9F9; 
-	border:1px solid #E6E6E6; padding-left:8px; height:30px;    
-	-webkit-border-radius: 2px;  border-radius:2px; outline:none;
-}
+.yyui-input-sm{ padding-left:8px;padding-right:8px; height:30px;   }
+.yyui-input-jinyong{ cursor:not-allowed; background-color:#F9F9F9;   }
 
 
 /*文本域****************************************************************************/
-.yyui_textarea{box-sizing:border-box; resize:none; font-family: "Microsoft YaHei" ! important;
-	border:1px solid #E6E6E6; padding:6px 10px; line-height:1.7;   
+.yyui-textarea{box-sizing:border-box; resize:none; font-family: "Microsoft YaHei" ! important;  width:100%;
+	border:1px solid #E6E6E6; padding:6px 10px; line-height:1.7;   font-size:14px;
 	-webkit-border-radius: 2px;  border-radius:2px; outline:none; vertical-align:middle;
+	margin:8px 0px;
 }
 
+/*密码输入框*/
+.yyui-mima { letter-spacing:4px; text-security: disc;-webkit-text-security: disc; } 
+.yyui-mima::-webkit-input-placeholder, textarea::-webkit-input-placeholder {  letter-spacing:normal; }
+.yyui-mima:-moz-placeholder, textarea:-moz-placeholder {letter-spacing:normal; }
+.yyui-mima::-moz-placeholder, textarea::-moz-placeholder {letter-spacing:normal; }
+.yyui-mima:-ms-input-placeholder, textarea:-ms-input-placeholder {letter-spacing:normal; }
+
 /*下拉框****************************************************************************/
-.yyui_select::-ms-expand { display: none;  } /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
-.yyui_select{ box-sizing:border-box; vertical-align:middle;
+.yyui-select::-ms-expand { display: none;  } /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+.yyui-select{ box-sizing:border-box; vertical-align:middle;  
 	/*很关键：将默认的select选择框样式清除*/
 	appearance:none;
 	-moz-appearance:none;
@@ -211,203 +142,214 @@ padding:0px 18px;-moz-border-radius: 2px;   -webkit-border-radius: 2px;   border
 	/*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
 	border:1px solid #E6E6E6; 
 	height:38px;
- 
+	 font-size:14px;
 	-webkit-border-radius: 2px;  border-radius:2px; 
 	/*在选择框的最右侧中间显示小箭头图片*/
-	background: url("https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/v1.0/images/jiantou.png") no-repeat scroll right center transparent;
+	background: url("https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/3.0/images/jiantou.png") no-repeat scroll right center transparent;
 	background-color:#FFFFFF;
 	/*为下拉小箭头留出一点位置，避免被文字覆盖*/
 	padding-right: 24px;padding-left:10px;
 }
-
 /*小下拉框*/
-.yyui_select_sm::-ms-expand { display: none;  } /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
-.yyui_select_sm{ box-sizing:border-box; vertical-align:middle;
-	/*很关键：将默认的select选择框样式清除*/
-	appearance:none;
-	-moz-appearance:none;
-	-webkit-appearance:none;
-	/*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
-	border:1px solid #E6E6E6; 
-	height:30px;
- 
-	-webkit-border-radius: 2px;  border-radius:2px; 
-	/*在选择框的最右侧中间显示小箭头图片*/
-	background: url("https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/v1.0/images/jiantou.png") no-repeat scroll right center transparent;
-	background-color:#FFFFFF;
-	/*为下拉小箭头留出一点位置，避免被文字覆盖*/
-	padding-right: 24px;padding-left:10px;
-}
+.yyui-select-sm{ 	height:30px; }
 
 
  
 /*单选框与复选框****************************************************************************/
-.yyui_checkbox , .yyui_radio {  cursor:pointer;   margin-right:8px; }
-.yyui_checkbox input[type=checkbox],
-.yyui_radio input[type=radio] {
-	-webkit-appearance: none;
-	background-color: transparent;
-	outline: 0 !important;
-	border: 0;
-	margin-right:0px;
-}
-.yyui_checkbox input[type=checkbox]:before,	.yyui_radio input[type=radio]:before {
-	display:inline-block;
-	font-family:FontAwesome;
-	color:#61646D;
-	font-size:18px;
-	overflow:hidden;
+/*单选框*/   
+.yyui-radio{ display:inline-block; cursor:pointer; margin-right:5px;}
+.yyui-radio input[type='radio']:hover { border-color:#1e9fff;}
+.yyui-radio input[type='radio']:checked {	background:#1e9fff;border-color:#1e9fff;}
+.yyui-radio input[type='radio'] {
+	cursor:pointer;
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	outline: none;
 	width:18px;
-	height:17px;
-	padding:0px 0px 0px 1px;
-	vertical-align:bottom;
+	height:18px;
+	background-color:#ffffff;
+	border:solid 2px #c2c2c2;
+	border-radius:50%;
+	margin:-3px 2px 0px 0px;
+	padding:0;
+	position:relative;
+	display:inline-block;
+	/*文字对齐方式*/
+	vertical-align:middle;
 }
-.yyui_checkbox input[type=checkbox]:checked:before,.yyui_radio input[type=radio]:checked:before {color:#1E9FFF;} /*蓝色默认*/
-.yyui_checkbox_hong input[type=checkbox]:checked:before,.yyui_radio_hong input[type=radio]:checked:before {color:#ff0000;}  /*正红*/
-.yyui_checkbox_danger input[type=checkbox]:checked:before,.yyui_radio_danger input[type=radio]:checked:before {color:#FF5722;}  /*警告红*/
-.yyui_checkbox_huang input[type=checkbox]:checked:before,.yyui_radio_huang input[type=radio]:checked:before {color:#FFB800;}  /*黄色*/
-.yyui_checkbox_lv input[type=checkbox]:checked:before,.yyui_radio_lv input[type=radio]:checked:before {color:#009688;}  /*绿色*/
-.yyui_checkbox input[type=checkbox]:before { content: "\f096";}
-.yyui_checkbox input[type=checkbox]:checked:before { content: "\f14a";}
-.yyui_radio input[type=radio]:before {content: "\f1db";}
-.yyui_radio input[type=radio]:checked:before {content: "\f192";}
+.yyui-radio input[type='radio']:checked::after  {
+	cursor:pointer;
+	content:'';
+	top:2px;
+	left:2px;
+	position:absolute;
+	border:#fff solid 2px;
+	border-top:none;
+	border-right:none;
+	height:5px;
+	width:8px;
+	transform:rotate(-45deg);
+}
+
+.yyui-radio-hong input[type='radio']:hover { border-color:#ff5722;}
+.yyui-radio-hong input[type='radio']:checked {	background:#ff5722;border-color:#ff5722;}
+.yyui-radio-lv input[type='radio']:hover { border-color:#16b777;}
+.yyui-radio-lv input[type='radio']:checked {	background:#16b777;border-color:#16b777;}
+.yyui-radio-huang input[type='radio']:hover { border-color:#ffb800;}
+.yyui-radio-huang input[type='radio']:checked {	background:#ffb800;border-color:#ffb800;}
 
 
+ /*复选框*/   
+.yyui-checkbox{ display:inline-block; cursor:pointer; margin-right:5px;}
+.yyui-checkbox input[type='checkbox']:hover { border-color:#1e9fff;}
+.yyui-checkbox input[type='checkbox']:checked {	background:#1e9fff;border-color:#1e9fff;}
+.yyui-checkbox input[type='checkbox'] {
+	cursor:pointer;
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	outline: none;
+	width:18px;
+	height:18px;
+	background-color:#ffffff;
+	border:solid 2px #c2c2c2;
+	border-radius:2px;
+	margin:-3px 2px 0px 0px;
+	padding:0;
+	position:relative;
+	display:inline-block;
+	/*文字对齐方式*/
+	vertical-align:middle;
+}
+.yyui-checkbox input[type='checkbox']:checked::after  {
+	cursor:pointer;
+	content:'';
+	top:2px;
+	left:2px;
+	position:absolute;
+	border:#fff solid 2px;
+	border-top:none;
+	border-right:none;
+	height:5px;
+	width:8px;
+	transform:rotate(-45deg);
+}
+.yyui-checkbox-hong input[type='checkbox']:hover { border-color:#ff5722;}
+.yyui-checkbox-hong input[type='checkbox']:checked {	background:#ff5722;border-color:#ff5722;}
+.yyui-checkbox-lv input[type='checkbox']:hover { border-color:#16b777;}
+.yyui-checkbox-lv input[type='checkbox']:checked {	background:#16b777;border-color:#16b777;}
+.yyui-checkbox-huang input[type='checkbox']:hover { border-color:#ffb800;}
+.yyui-checkbox-huang input[type='checkbox']:checked {	background:#ffb800;border-color:#ffb800;}
 
-/*【选择框包括单选框radio、复选框checkbox】，按钮小对号形式，默认蓝色*/
-.yyui_xzk {	display:block;	float:left;	position:relative;	overflow:hidden;	margin-right:3px;}
-.yyui_xzk>input {	position:absolute;	top:0;	left:-20px;}
-.yyui_xzk>val {	display:block;	cursor:pointer;	background-color:#ffffff;	border-radius:2px;	padding:0px 15px;	text-align:center;	 	border:#dddddd solid 1px;
+
+/*选择框包括单选框radio、复选框checkbox，按钮小对号形式，默认蓝色*/
+.yyui-xzk {	display:block;	float:left;	position:relative;	overflow:hidden;	margin-right:3px;}
+.yyui-xzk>input {	position:absolute;	top:0;	left:-20px;}
+.yyui-xzk>val {	display:block;	cursor:pointer;	background-color:#ffffff;	border-radius:2px;	padding:0px 15px;	text-align:center;	 	border:#dddddd solid 1px; font-size:14px;
 	height:36px;	line-height:36px;	color:#666666;	user-select:none;	overflow:hidden;	position:relative;}
-.yyui_xzk>input:checked + val {	border:#1E9FFF solid 1px;	color:#1E9FFF;	background-color:#FFFfff;}
-.yyui_xzk>input:checked + val:after {content:'';	display:block;	width:20px;	height:20px;	background-color:#1E9FFF;transform:skewY(-45deg);position:absolute;bottom:-10px;right:0;z-index:1;}
-.yyui_xzk>input:checked + val:before {content:'';display:block;	width:3px;	height:8px;border-right:#ffffff solid 2px;	border-bottom:#ffffff solid 2px;transform:rotate(35deg);position:absolute;	bottom:2px;	right:4px;z-index:2;}
-
+.yyui-xzk>input:checked + val {	border:#1E9FFF solid 1px;	color:#1E9FFF;	background-color:#FFFfff;}
+.yyui-xzk>input:checked + val:after {content:'';	display:block;	width:20px;	height:20px;	background-color:#1E9FFF;transform:skewY(-45deg);position:absolute;bottom:-10px;right:0;z-index:1;}
+.yyui-xzk>input:checked + val:before {content:'';display:block;	width:3px;	height:8px;border-right:#ffffff solid 2px;	border-bottom:#ffffff solid 2px;transform:rotate(35deg);position:absolute;	bottom:2px;	right:4px;z-index:2;}
 
 /*【选择框包括单选框radio、复选框checkbox】，按钮小对号形式，默认红色*/
-.yyui_xzk_hong {	display:block;	float:left;	position:relative;	overflow:hidden;	margin-right:3px;}
-.yyui_xzk_hong>input {	position:absolute;	top:0;	left:-20px;}
-.yyui_xzk_hong>val {	display:block;	cursor:pointer;	background-color:#ffffff;	border-radius:2px;	padding:0px 15px;	text-align:center;	 	border:#dddddd solid 1px;
-	height:36px;	line-height:36px;	color:#666666;	user-select:none;	overflow:hidden;	position:relative;}
-.yyui_xzk_hong>input:checked + val {	border:#C9302C solid 1px;	color:#C9302C;	background-color:#FFFfff;}
-.yyui_xzk_hong>input:checked + val:after {content:'';	display:block;	width:20px;	height:20px;	background-color:#C9302C;transform:skewY(-45deg);position:absolute;bottom:-10px;right:0;z-index:1;}
-.yyui_xzk_hong>input:checked + val:before {content:'';display:block;	width:3px;	height:8px;border-right:#ffffff solid 2px;	border-bottom:#ffffff solid 2px;transform:rotate(35deg);position:absolute;	bottom:2px;	right:4px;z-index:2;}
+.yyui-xzk-hong>input:checked + val {	border:#C9302C solid 1px;	color:#C9302C;	}
+.yyui-xzk-hong>input:checked + val:after { background-color:#C9302C; }
 
 /*【选择框包括单选框radio、复选框checkbox】，按钮小对号形式，绿色*/
-.yyui_xzk_lv {	display:block;	float:left;	position:relative;	overflow:hidden;	margin-right:3px;}
-.yyui_xzk_lv>input {	position:absolute;	top:0;	left:-20px;}
-.yyui_xzk_lv>val {	display:block;	cursor:pointer;	background-color:#ffffff;	border-radius:2px;	padding:0px 15px;	text-align:center; 	border:#dddddd solid 1px;
-	height:36px;	line-height:36px;	color:#666666;	user-select:none;	overflow:hidden;	position:relative;}
-.yyui_xzk_lv>input:checked + val {	border:#449D44 solid 1px;	color:#449D44;	background-color:#FFFfff;}
-.yyui_xzk_lv>input:checked + val:after {content:'';	display:block;	width:20px;	height:20px;	background-color:#449D44;transform:skewY(-45deg);position:absolute;bottom:-10px;right:0;z-index:1;}
-.yyui_xzk_lv>input:checked + val:before {content:'';display:block;	width:3px;	height:8px;border-right:#ffffff solid 2px;	border-bottom:#ffffff solid 2px;transform:rotate(35deg);position:absolute;	bottom:2px;	right:4px;z-index:2;}
+.yyui-xzk-lv>input:checked + val {	border:#449D44 solid 1px;	color:#449D44;	}
+.yyui-xzk-lv>input:checked + val:after {	background-color:#449D44;}
 
+/* 小选择框*/
+.yyui-xzk-sm>val {height:28px;	line-height:28px;	}
 
-/* 小_sm【选择框包括单选框radio、复选框checkbox】，默认蓝色*/
-.yyui_xzk_sm {	display:block;	float:left;	position:relative;	overflow:hidden;	margin-right:3px;}
-.yyui_xzk_sm>input {	position:absolute;	top:0;	left:-20px;}
-.yyui_xzk_sm>val {	display:block;	cursor:pointer;	background-color:#ffffff;	border-radius:2px;	padding:0px 15px;	text-align:center;	 	border:#dddddd solid 1px;
-	height:28px;	line-height:28px;	color:#666666;	user-select:none;	overflow:hidden;	position:relative;}
-.yyui_xzk_sm>input:checked + val {	border:#1E9FFF solid 1px;	color:#1E9FFF;	background-color:#FFFfff;}
-.yyui_xzk_sm>input:checked + val:after {content:'';	display:block;	width:20px;	height:20px;	background-color:#1E9FFF;transform:skewY(-45deg);position:absolute;bottom:-10px;right:0;z-index:1;}
-.yyui_xzk_sm>input:checked + val:before {content:'';display:block;	width:3px;	height:8px;border-right:#ffffff solid 2px;	border-bottom:#ffffff solid 2px;transform:rotate(35deg);position:absolute;	bottom:2px;	right:4px;z-index:2;}
-
-.yyui_xzk_hong_sm {	display:block;	float:left;	position:relative;	overflow:hidden;	margin-right:3px;}
-.yyui_xzk_hong_sm>input {	position:absolute;	top:0;	left:-20px;}
-.yyui_xzk_hong_sm>val {	display:block;	cursor:pointer;	background-color:#ffffff;	border-radius:2px;	padding:0px 15px;	text-align:center;	 	border:#dddddd solid 1px;
-	height:28px;	line-height:28px;	color:#666666;	user-select:none;	overflow:hidden;	position:relative;}
-.yyui_xzk_hong_sm>input:checked + val {	border:#C9302C solid 1px;	color:#C9302C;	background-color:#FFFfff;}
-.yyui_xzk_hong_sm>input:checked + val:after {content:'';	display:block;	width:20px;	height:20px;	background-color:#C9302C;transform:skewY(-45deg);position:absolute;bottom:-10px;right:0;z-index:1;}
-.yyui_xzk_hong_sm>input:checked + val:before {content:'';display:block;	width:3px;	height:8px;border-right:#ffffff solid 2px;	border-bottom:#ffffff solid 2px;transform:rotate(35deg);position:absolute;	bottom:2px;	right:4px;z-index:2;}
-
-.yyui_xzk_lv_sm {	display:block;	float:left;	position:relative;	overflow:hidden;	margin-right:3px;}
-.yyui_xzk_lv_sm>input {	position:absolute;	top:0;	left:-20px;}
-.yyui_xzk_lv_sm>val {	display:block;	cursor:pointer;	background-color:#ffffff;	border-radius:2px;	padding:0px 15px;	text-align:center; 	border:#dddddd solid 1px;
-	height:28px;	line-height:28px;	color:#666666;	user-select:none;	overflow:hidden;	position:relative;}
-.yyui_xzk_lv_sm>input:checked + val {	border:#449D44 solid 1px;	color:#449D44;	background-color:#FFFfff;}
-.yyui_xzk_lv_sm>input:checked + val:after {content:'';	display:block;	width:20px;	height:20px;	background-color:#449D44;transform:skewY(-45deg);position:absolute;bottom:-10px;right:0;z-index:1;}
-.yyui_xzk_lv_sm>input:checked + val:before {content:'';display:block;	width:3px;	height:8px;border-right:#ffffff solid 2px;	border-bottom:#ffffff solid 2px;transform:rotate(35deg);position:absolute;	bottom:2px;	right:4px;z-index:2;}
-
-
-/*文件yyui_file美化 ，file被隐藏了，定义的css是show****************************************************************************/
-.yyui_file_show {box-sizing:border-box; cursor:pointer;font-size:13px;
+/*file文件域*/
+/* .yyui-file{ display:none;} */
+.yyui-file-show-part {box-sizing:border-box; cursor:pointer;  
 	border:1px solid #E6E6E6; padding-left:35px; padding-right:10px; height:38px;  
 	-webkit-border-radius: 2px;  border-radius:2px; outline:none;
 	 background-color:#FFFFFF; vertical-align:middle;
 }
-.yyui_file_show_sm {box-sizing:border-box; cursor:pointer;font-size:13px;
-	border:1px solid #E6E6E6; padding-left:35px; padding-right:10px; height:30px;  
-	-webkit-border-radius: 2px;  border-radius:2px; outline:none;
-	 background-color:#FFFFFF; vertical-align:middle;
-}
+.yyui-file-sm{ padding-left:8px;padding-right:8px; height:30px;   }
 
 
-.layui-input-leftside-icon{ /*用于管理后台页面账号密码前输入框左侧的图标*/
-box-sizing:border-box; display:block; border-top:1px solid #E6E6E6;border-left:1px solid #E6E6E6;border-bottom:1px solid #E6E6E6; height:38px; line-height:38px;  -webkit-border-radius: 2px;  border-radius:2px; outline:none;  text-align:center; background-color:#FFFFFF; 
-}  
 
-/*栅格*/
+/*输入框左侧图标定义*/
+.yyui-icon-date{box-sizing:border-box; background: url("https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/3.0/images/date.png") no-repeat scroll left center transparent; padding-left:32px;padding-right:10px;}  
+.yyui-icon-file{box-sizing:border-box; background: url("https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/3.0/images/file.png") no-repeat scroll left center transparent; padding-left:32px;padding-right:10px;}
+.yyui-icon-excel{box-sizing:border-box; background: url("https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/3.0/images/excel.png") no-repeat scroll left center transparent; padding-left:32px;padding-right:10px;}
+.yyui-icon-word{box-sizing:border-box; background: url("https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/3.0/images/word.png") no-repeat scroll left center transparent; padding-left:32px;padding-right:10px;}
+.yyui-icon-zip{box-sizing:border-box; background: url("https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/3.0/images/zip.png") no-repeat scroll left center transparent; padding-left:32px;padding-right:10px;}
+.yyui-icon-image{box-sizing:border-box; background: url("https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/3.0/images/image.png") no-repeat scroll left center transparent; padding-left:32px;padding-right:10px;}
+.yyui-icon-pdf{box-sizing:border-box; background: url("https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/3.0/images/pdf.png") no-repeat scroll left center transparent; padding-left:32px;padding-right:10px;}
+.yyui-icon-user{box-sizing:border-box; background: url("https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/3.0/images/user.png") no-repeat scroll left center transparent; padding-left:32px;padding-right:10px;}
+.yyui-icon-pass{box-sizing:border-box; background: url("https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/3.0/images/pass.png") no-repeat scroll left center transparent; padding-left:32px;padding-right:10px;}
+.yyui-icon-lock{box-sizing:border-box; background: url("https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/3.0/images/lock.png") no-repeat scroll left center transparent; padding-left:32px;padding-right:10px;}
+/*图标居右侧*/
+.yyui-icon-right{ background-position: right; padding-left:10px;padding-right:32px; }
+
+
+	
+/*徽章，未读数，小圆点****************************************************************************/
+.yyui-badge { display:inline-block; line-height:21px; color:#ffffff; background-color:#FF5722; margin-left:4px; 
+font-size:11px; padding:0px 5px; -moz-border-radius: 2px;   -webkit-border-radius: 2px;   border-radius:2px; letter-spacing:0px;}
+.yyui-badge-dot { display:inline-block; color:#FF5722; font-size:1.4em; line-height:0.8; margin-left:4px;  }
+	
+
+/*面板*/
+.yyui-card{box-sizing:border-box;padding:0px 5px;border-radius: 2px;background-color: #ffffff;box-shadow: 0 1px 2px 0 rgba(0,0,0,.05); }
 @media screen and (max-width: 1028px){
 	/* 手机、pad */
-	.yyui_m1{ display:inline-block; width:8.3333333%;}
-	.yyui_m2{ display:inline-block; width:16.666666%;}
-	.yyui_m3{ display:inline-block; width:25%;}
-	.yyui_m4{ display:inline-block; width:33.3333333%;}
-	.yyui_m5{ display:inline-block; width:41.66666%;}
-	.yyui_m6{ display:inline-block; width:50%;}
-	.yyui_m7{ display:inline-block; width:58.3333333%;}
-	.yyui_m8{ display:inline-block; width:66.666666%;}
-	.yyui_m9{ display:inline-block; width:75%;}
-	.yyui_m10{ display:inline-block; width:83.3333333%;}
-	.yyui_m11{ display:inline-block; width:91.66666%;}
-	.yyui_m12{ display:inline-block; width:100%;}
+	.yyui-card{	margin:0px 2px 15px 0px;}
 }
 @media only screen and (min-width: 1029px){
 	/* 电脑PC */
-	.yyui_pc1{ display:inline-block; width:8.3333333%;}
-	.yyui_pc2{ display:inline-block; width:16.666666%;}
-	.yyui_pc3{ display:inline-block; width:25%;}
-	.yyui_pc4{ display:inline-block; width:33.3333333%;}
-	.yyui_pc5{ display:inline-block; width:41.66666%;}
-	.yyui_pc6{ display:inline-block; width:50%;}
-	.yyui_pc7{ display:inline-block; width:58.3333333%;}
-	.yyui_pc8{ display:inline-block; width:66.666666%;}
-	.yyui_pc9{ display:inline-block; width:75%;}
-	.yyui_pc10{ display:inline-block; width:83.3333333%;}
-	.yyui_pc11{ display:inline-block; width:91.66666%;}
-	.yyui_pc12{ display:inline-block; width:100%;}
+	.yyui-card{margin:0px 10px 15px 0px;}
+}
+.yyui-card-title{ box-sizing:border-box; height:40px; line-height:40px; font-size:16px; float:left;     padding-left:8px; }
+.yyui-card-more{ box-sizing:border-box; height:40px; line-height:40px;  float:right;   text-align:right; padding-right:8px; }
+.yyui-card-body{
+	clear:both;
+    padding: 8px 10px;
+    line-height:normal;
+	 border-top:1px solid #F6F6F6;
 }
 
 
-/*对layui的文本输入框补充css */
+/*普通静态表格美化*/
+.yyui-table {  border-spacing: 0; *border-collapse: collapse; table-layout:fixed;     } 
+/* 第一行 */
+.yyui-table thead tr td, .yyui-table thead tr th  { padding-left:4px;padding-right:2px; background-color:#ffffff; box-sizing:border-box; font-weight:bold; }
+/* 表身td   */
+.yyui-table td, .yyui-table th {padding-left:4px;padding-right:2px;  border:1px solid #eeeeee; box-sizing:border-box; 	}
+/* 鼠标经过行变色 */
+.yyui-table tr:hover{ background-color:#FAFAFA;} 
+
+/*边框+行美化*/
+.yyui-table-line {  border-spacing: 0; *border-collapse: collapse; table-layout:fixed;  border-top:1px solid #eeeeee;border-left:1px solid #eeeeee;border-right:1px solid #eeeeee;   } 
+.yyui-table-line thead tr td, .yyui-table-line thead tr th  { padding-left:4px;padding-right:2px; background-color:#ffffff; box-sizing:border-box; font-weight:bold; }
+.yyui-table-line td, .yyui-table-line th {padding-left:4px;padding-right:2px;  border-bottom:1px solid #eeeeee; box-sizing:border-box; 	}
+.yyui-table-line tr:hover{ background-color:#FAFAFA;} 
+
+/*只有行美化*/
+.yyui-table-onlyline {  border-spacing: 0; *border-collapse: collapse; table-layout:fixed;     } 
+.yyui-table-onlyline thead tr td, .yyui-table-onlyline thead tr th  { padding-left:4px;padding-right:2px; background-color:#ffffff; box-sizing:border-box; font-weight:bold; }
+.yyui-table-onlyline td, .yyui-table-onlyline th {padding-left:4px;padding-right:2px;  border-bottom:1px solid #eeeeee; box-sizing:border-box; 	}
+.yyui-table-onlyline tr:hover{ background-color:#FAFAFA;} 
+
+/*边框+列美化*/
+.yyui-table-row {  border-spacing: 0; *border-collapse: collapse; table-layout:fixed;  border-top:1px solid #eeeeee;border-left:1px solid #eeeeee;border-bottom:1px solid #eeeeee;   } 
+.yyui-table-row thead tr td, .yyui-table-row thead tr th  { padding-left:4px;padding-right:2px; background-color:#ffffff; box-sizing:border-box; font-weight:bold; }
+.yyui-table-row td, .yyui-table-row th {padding-left:4px;padding-right:2px;  border-right:1px solid #eeeeee; box-sizing:border-box; 	}
+.yyui-table-row tr:hover{ background-color:#FAFAFA;} 
+
+ 
+
+
+
+
+/*对layui进行csshack */
 .layui-input-sm{ height:30px; } /*小输入框，与btn高度保持一致*/
 .layui-input-xs{ height:22px; } /*超小输入框*/
-
-.yyui-table , .layui-table  { margin-top:0px; } /*对layui-table清除上margin   */
-.yyui-table td {padding:0px 5px;} /*对layui-table的补充，设置td的padding   */
-
 .layui-card-body{ line-height: normal;} /*原版layui定义line-height:24像素，这会让面板内容如ueditor工具栏图标变高，在此修正。   */
-
-/*补充年月日输入框后面的日历图标，好看*/
-.nianyueri{background: url("https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/v1.0/images/riqi.png") no-repeat scroll right center transparent;}
-.nianyue{background: url("https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/v1.0/images/riqi.png") no-repeat scroll right center transparent;}
-.nian{background: url("https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/v1.0/images/riqi.png") no-repeat scroll right center transparent;}
-.nianyuerisfm{background: url("https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/v1.0/images/riqi.png") no-repeat scroll right center transparent;} /*年月日时分秒*/
-.nianyuerisf{background: url("https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/v1.0/images/riqi.png") no-repeat scroll right center transparent;} /*年月日时分*/
-.nianyueris{background: url("https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/v1.0/images/riqi.png") no-repeat scroll right center transparent;} /*年月日时*/
+.layui-table-cell{  padding-left:4px;padding-right:2px; padding-top:4px;  } /*对表格td减小padding（原来的太大）   */
 
 
-/*yyui_table列拖拽*/
-.yyui_table_lie_tuozhuai { position:absolute;right:-1px;top:0;z-index:1;width:10px;height:100%;cursor:col-resize;/* background-color:#006699; 为了调试 */  }
-
-/* 
-表格设置td的宽度
-td{
-    min-width: 150px;
-    max-width: 200px;
-}
-超出长度隐藏
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-*/	

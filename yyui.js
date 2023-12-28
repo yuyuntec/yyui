@@ -1,34 +1,42 @@
-//yyui2.0  2022.08.09 by zgy
-
-// 去掉所有input的autocomplete, 显示指定的除外 
+//yyui3.0  2022.08.15 by zgy
 $(function(){
+	
+	//去掉所有input的autocomplete, 显示指定的除外 
 	$('input:not([autocomplete]),textarea:not([autocomplete]),select:not([autocomplete])').attr('autocomplete', 'off');
+	
+	
+	//本文域上传控件美化
+	$(".yyui-file").each(function(){
+		var file_width = $(this).width(); //原文件域宽度
+		var yangshi = $(this).attr('class').replace('yyui-file',''); //原文件域样式
+		var placeholder = pnull($(this).attr("placeholder")); 	if(placeholder+''==''){placeholder = "请选择文件"; }  //原文件域placeholder
+		$(this).hide(); //隐藏
+		$(this).after("<input type=\"text\" class=\"yyui-file-show-part "+yangshi+" \" placeholder=\""+placeholder+"\" readonly=\"readonly\"  onclick=\"$(this).prev().click();\" style='width:"+file_width+"px'  />");
+	});
+	$(".yyui-file").change(function(){
+		$(this).next().val(yyui_getFileName($(this).val()));
+	});
+
+
+
 });
 
-//yyui本文域上传控件美化
-$(function () {
-	$(".yyui_file").hide();
-	$(".yyui_file").each(function(){
-		var kuan = $(this).width();
-		var icon = pnull($(this).attr("icon"),"s"); 	if(icon+''==''){icon = "default"; }
-		var placeholder = pnull($(this).attr("placeholder"),"s"); 	if(placeholder+''==''){placeholder = "请选择文件"; }
-		$(this).after("<input type=\"text\" style=\"width:"+kuan+"px; background: url('https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/v1.0/images/uploadfile_"+icon+".png') no-repeat scroll left center transparent; \"  class=\"yyui_file_show\" placeholder=\""+placeholder+"\" readonly=\"readonly\"  onclick=\"$(this).prev().click();\"  />");
+//选项卡切换
+//var a = yyui_tab('tab1'); //容器id
+function yyui_tab(id) {
+	//初始化
+	var index=$("#"+id).children(':first').children('.current').index();//得到默认选中的选项卡
+	//alert(index);
+	if(index<0){index=0;} //如果没设置（-1），则指定index为0即第1个选项卡选中。
+	$("#"+id).children(':last').children().eq(index).show().siblings().hide();	//相应内容显示，其余隐藏
+	//点击某个选项卡
+	var index=$("#"+id).children(':first').children().click(function(){ 
+		index = $(this).index();
+		$(this).attr('class','current').siblings().removeClass('current'); //本节点添加current其余节点去掉
+		$(this).parent().next().children().eq(index).show().siblings().hide();	//相应内容显示，其余隐藏
 	});
-	$(".yyui_file").change(function(){
-		$(this).next().val(yyui_getFileName($(this).val()));
-	});
-	
-	$(".yyui_file_sm").hide();
-	$(".yyui_file_sm").each(function(){
-		var kuan = $(this).width();
-		var icon = pnull($(this).attr("icon"),"s"); 	if(icon+''==''){icon = "default"; }
-		var placeholder = pnull($(this).attr("placeholder"),"s"); 	if(placeholder+''==''){placeholder = "请选择文件"; }
-		$(this).after("<input type=\"text\" style=\"width:"+kuan+"px; background: url('https://yuyun365.oss-cn-beijing.aliyuncs.com/yyui/v1.0/images/uploadfile_"+icon+".png') no-repeat scroll left center transparent; \"  class=\"yyui_file_show_sm\" placeholder=\""+placeholder+"\" readonly=\"readonly\"  onclick=\"$(this).prev().click();\"  />");
-	});
-	$(".yyui_file_sm").change(function(){
-		$(this).next().val(yyui_getFileName($(this).val()));
-	});
-});
+}
+
 
 //文件上传
 function yyui_upload(options) {
@@ -50,13 +58,14 @@ function yyui_upload(options) {
 	//点击按钮
 	$(elem).click(function(){ 
 		//生成文件域
-		$('body').append('<input style="display:none;" type="file" name="yyui_wenjian'+rand+'" id="yyui_wenjian'+rand+'">');
+		$('body').append('<input style="display:none;" type="file" name="yyui-wenjian'+rand+'" id="yyui-wenjian'+rand+'">');
 		//执行点击文件域弹出文件选择窗
-		$("#yyui_wenjian"+rand).click();
+		$("#yyui-wenjian"+rand).click();
 		//用户选择了文件后执行检测与上传
-		$("#yyui_wenjian"+rand).on("change",function(){
+		$("#yyui-wenjian"+rand).on("change",function(){
+			//alert('a');
 			//读取文件域的值数组
-			var fileArray =  document.getElementById('yyui_wenjian'+rand).files[0];
+			var fileArray =  document.getElementById('yyui-wenjian'+rand).files[0];
 			//alert(fileArray.name); //文件名    	//alert(fileArray.size/1024); //尺寸   	//alert(chunkzm(fileArray.name)); //扩展名
 			var kzm = String(chunkzm(fileArray.name)); //扩展名
 			kzm=kzm.toLowerCase(); //转小写
@@ -101,58 +110,10 @@ function yyui_upload(options) {
 }
 
 
-//表格美化，适合超多列内容横向滚动
-function yyui_table(options) {
-    options = options || {};  //调用函数时如果options没有指定，就给它赋值{},一个空的Object
-	var elem = $.trim(options.elem); //选择器必填 #table1
-    var height = options.height || "full";  
-	var show_height;
-	if(typeof height == 'number'){ //数字，直接指定像素高度
-		show_height = height + 'px';
-	}else if(height=='100%' || height=='full' ){ //字符型，全高就是可视屏幕高度
-		show_height = $(window).height() + 'px';
-	}else{ //字符型，full-250
-		show_height = ($(window).height() - height.replaceAll(" ","").replaceAll("full-","")) + 'px';
-	}
- 	//alert(show_height);return;
-	//为表格包裹div容器框以支持横向滚动条，默认100%宽，高度一般100% - 50
-	$(elem).wrap('<div style="width:100%; overflow:auto;   height:'+show_height+'; "></div>');
-//	$(elem).wrap('<div style="width:100%; box-sizing:border-box; border:1px solid #eeeeee; overflow:auto; height:'+show_height+';"></div>');
 
-	//设置整体表格fixed
-	//$(elem).css({"table-layout":"fixed","margin-top":"-1px","margin-left":"-1px" });
-	$(elem).css({"table-layout":"fixed"  });
-	//设置td或th单元格不换行，溢出省略号
-	$(elem+' td, '+elem+' th').css({"white-space":"nowrap","overflow":"hidden","text-overflow":"ellipsis" });
-	//为首行td（表头）单元格添加拖拽
-	$(elem+' thead tr td ,'+elem+' thead tr th').prepend("<div class='yyui_table_lie_tuozhuai'></div>");
-	
-	$(elem+" thead tr td .yyui_table_lie_tuozhuai ,"+elem+" thead tr th .yyui_table_lie_tuozhuai ").mousedown(function (evt) {
-		//1、找最近的td或th
-		let dragTh = $(this).parent('td,th'); //所在td或th
-		//2、记录按下时的鼠标位置
-		var shubiao1 = evt.clientX;
-		var shubiao2 = shubiao1;
-		//3、获取当前鼠标按下时的表头的宽度
-		var liekuan1 = dragTh.width();
-		var liekuan2 = liekuan1;
-		//4、移动鼠标获取位置
-		$(document).mousemove(function(event){
-			//$("span").text(event.pageX + ", " + event.pageY);
-			shubiao2 = event.pageX;
-			liekuan2 = liekuan1 + shubiao2 - shubiao1;
-			if(liekuan2>20){  //极限列宽须大于20像素
-				dragTh.width(liekuan2);
-			}else{ //否则中断操作
-				$(document).off("mousemove");//这里是解绑函数，使用off函数，
-			}
-		});
-	}).mouseup(function (evt) {
-		//5、鼠标弹起，拖拽完成，列宽留在那里
-		$(document).off("mousemove");	//这里是解绑函数，使用off函数，
-	});
 
-}
+
+
 
 /* js自定义常用函数 *************************************************************************/
 /* ***********************************************************************************/
@@ -174,8 +135,6 @@ function yyui_getFileName(o){ //从路径中获取文件名
 	var pos=o.lastIndexOf("\\");
 	return o.substring(pos+1);  
 }
-
-
 
 //获取文件名及扩展名、纯文件名、纯扩展名
 //var file="/loac/asdf.sad/文件 名.docx";
@@ -206,7 +165,7 @@ function isnull(str) {
 }
 //处理空
 function pnull(str,sn){ //处理空
-	if(!str || str=="undefined" || str=="null"){
+	if( !str || str=="undefined" || str=="null"){
 		if(sn=="n"){
 			return 0;
 		}else{
@@ -214,6 +173,14 @@ function pnull(str,sn){ //处理空
 		}
 	}
 	return str;
+}
+
+//随机数n位函数
+//var suiji = yyui_rnd(4); //4位随机数
+function yyui_rnd(n){
+	var x = Math.pow(10,(n-1)) ;  //4位1000
+	var y = Math.pow(10,n)-1 ;   //4位9999
+	return Math.floor(Math.random()*(y-x+1)+x);
 }
 
 //是否自然数，自然数包括0
@@ -233,11 +200,16 @@ function is_zzs(value){
     }  
 }
 
+//验证电子邮件
+function is_email(str) {
+    return /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(str);
+}
 
 // 验证手机号
-function is_sjh(phone) {
-    var pattern = /^1[34578]\d{9}$/;
-    return pattern.test(phone);
+function is_sjh(phone) { 
+    //var pattern = /^1[34578]\d{9}$/;
+    //return pattern.test(phone);
+	return /^1\d{10}$/i.test(phone);
 }
 
 //验证中文姓名
@@ -252,23 +224,113 @@ function is_sfzh(card) {
     return pattern.test(card);
 }
 
+//是否包含字符串
+//alert(is_baohan('abc','a'));
+function is_baohan(str,char){
+	if (str.indexOf(char) != -1 ){ return true; }else{	return false; }
+}
+ 
+
+
+//是否包含汉字
+function is_baohan_hanzi(val){
+	var reg = new RegExp("[\u4E00-\u9FFF]+","g");
+	return reg.test(val);
+}
+
 //复选框组按名称ids[]计算选中个数
 function checkbox_xz_num(checkbox_name){
 	return $("input:checkbox[name='"+checkbox_name+"']:checked").length ;
 }
 
+//复选框组按名称ids[]计算选中 2,3,5
+function checkbox_xz(checkbox_name){
+	var s="";
+	$("input:checkbox[name='"+checkbox_name+"']:checked").each(function(i){
+		s=s+","+$(this).val();
+	});
+	if(s!=""){ s=s.substr(1); } //如果有选中，则去掉开头的逗号。
+	return s;
+}
+
+
+
+//从二维数组抽取一列转一维数组
+//[
+//    {
+//        "x": "30422",
+//        "曾用名称": "222",
+//        "标准名称": "国家博物馆（中国国家博物馆）"
+//    },
+//    {
+//        "x": "30421",
+//        "曾用名称": "111",
+//        "标准名称": "国家博物馆（中国国家博物馆）"
+//    }
+//]
+//从二维数组arr2中抽取x列成一维数组
+function arr2_to_1(arr2,xiang){
+	if(Array.isArray(arr2)){
+		arr1 =[];
+		for(var i=0; i<arr2.length;i++){
+			arr1.push(arr2[i][xiang]);  
+		}
+		return arr1;
+	}else{
+		return false;
+	}
+}
+
+//从二维数组抽取一列或多列组成新二维数组
+//多个项用逗号隔开 x,xingming,nianling
+function arr2_to_new(arr2,xiang){
+	if(Array.isArray(arr2)){
+		arr1 =[];
+		xiang_arr = xiang.split(",");
+		for(var i=0; i<arr2.length;i++){
+			arrr={};
+			for(var n=0; n<xiang_arr.length;n++){
+				//alert(  arr2[i][xiang_arr[n]] );
+				arrr[xiang_arr[n]] = arr2[i][xiang_arr[n]];
+			}
+			arr1.push(arrr);  
+		}
+		return arr1;
+	}else{
+		return false;
+	}
+}
+
 
 //btn_loading 函数，实现ajax执行loading
-//dom节点，提示语，提交地址，提交参数{"miaoshu" : "学校主题-机构" ,"biaoming":"zf_bumen"}
-function btn_loading(that,tishi,url,canshu){
-	layer.confirm(tishi, {icon: 3, title:'提示'}, function(index) {
-		if(index) { //确定后的动作 
-			layer.close(index);
-			var btn_html = that.html(); //保持初始按钮值
-			var btn_class = that.attr('class'); //保持初始按钮样式
-			that.attr('class','layui-btn layui-btn-disabled  layui-btn-sm');
-			that.html('<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>&nbsp;正在执行，请耐心等待');
-			that.attr('disabled','disabled');
+//用法
+/*
+function chenggong(data){ //执行成功后
+	layer.alert('执行完毕。', function(index) {
+		//data.aaa 
+		window.location.href='?';
+	});
+}
+$("#btn_tongbu").click(function(){ //点击button执行同步
+	 var canshu={	
+	 				"a" : "aa" ,
+					"b" : "bb"
+				};
+	 btn_loading($(this),'确定执行同步吗？','http://demo.yuyun365.com/yyui/3.0/btn_loading_server.php',canshu,chenggong);
+}); 
+*/
+function btn_loading(that,tishi,url,canshu,success_function ){
+	var btn_html = that.html(); //保持初始按钮值
+	var btn_class = that.attr('class'); //保持初始按钮样式
+	if(is_baohan(btn_class,'btn-sm')){
+		var xiaoanniu = " yyui-btn-sm "; 
+	}else if(is_baohan(btn_class,'btn-xs')){
+		var xiaoanniu = " yyui-btn-xs "; 
+	}else{
+		var xiaoanniu = "";
+	}
+	if(tishi==''){ //无提示，直接执行
+			that.attr('class','yyui-btn yyui-btn-jinyong ' + xiaoanniu ).html('<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>&nbsp;正在执行，请耐心等待').attr('disabled','disabled');
 	
 			$.ajax({
 				//本地的url
@@ -282,29 +344,48 @@ function btn_loading(that,tishi,url,canshu){
 				jsonp:"callback",
 				timeout: 50000000,
 				success:function(data){
-					that.attr('class',btn_class);
-					that.html(btn_html);
-					that.removeAttr('disabled');
-					layer.alert('执行完毕', function(index) {
-						//确定后 
-						window.location.href='?';
-					});
+					that.attr('class',btn_class).html(btn_html).removeAttr('disabled');
+					success_function(data);
 				}
 			});
-
-		}else{ //取消后的动作 
-			layer.close(index); return false;
-		}
-	});
+		
+	}else{ //有提示
+		layer.confirm(tishi, {icon: 3, title:'提示'}, function(index) {
+			if(index) { //确定后的动作 
+				layer.close(index);
+				that.attr('class','yyui-btn yyui-btn-jinyong ' + xiaoanniu ).html('<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>&nbsp;正在执行，请耐心等待').attr('disabled','disabled');
+				$.ajax({
+					//本地的url
+					url : url,
+					dataType:"jsonp",
+					//传递参数
+					data:canshu,
+					//数据传输类型
+					type:"post",
+					//回调函数
+					jsonp:"callback",
+					timeout: 50000000,
+					success:function(data){
+						that.attr('class',btn_class).html(btn_html).removeAttr('disabled');
+						success_function(data);
+					}
+				});
+	
+			}else{ //取消后的动作 
+				layer.close(index); return false;
+			}
+		});
+	}
 }
 
 
 //导出多sheet到excel  by zgy2022年5月5日
-//用法，引入xlsx.core.min.js 
+//用法，提醒！
+//引入xlsx.core.min.js 
 //<script src="https://cdn.staticfile.org/xlsx/0.18.5/xlsx.core.min.js"><//script> 
-//表格第一行的td如果设置export_hidden，那么导出隐藏该列
-//<button class="yyui_btnbai" onClick="yyui_export_xls('table1','表1','文件名');">导出excel</button>
-//<button class="yyui_btnbai" onClick="yyui_export_xls('table1,table2,table3','表1,表2,表3','文件名');">导出2excel</button>
+//表格第一行的td如果设置 class=export_hidden，那么导出隐藏该列
+//<button class="yyui-btnbai" onClick="yyui_export_xls('table1','表1','文件名');">导出excel</button>
+//<button class="yyui-btnbai" onClick="yyui_export_xls('table1,table2,table3','表1,表2,表3','文件名');">导出2excel</button>
 function yyui_export_xls(table_id,sheet_name,wjm) {
 	
 	var wb = XLSX.utils.book_new(); //excel这本书book
@@ -330,7 +411,7 @@ function yyui_export_xls(table_id,sheet_name,wjm) {
 					}		
 				}
 			});
-			console.log(ws);
+			//console.log(ws);
 			//alert(yincanglie);return;
  
 			var yincanglie_arr = yincanglie.split(",");  //读取删除列
@@ -423,3 +504,29 @@ function deleteCol(ws, index) {
 	return ws;
 }
 //导出excel结束////////////////////////////////////////////////////////////////
+
+//密码强度：数字字母特殊字符4  数字字母3  仅字母或特殊字符2  仅位数合格1   
+//alert(mima_qiangdu('aas#223asdf',8));
+//if(mima_qiangdu('123456',8)>=3){alert('合格');}     参数：密码字符串；要求密码位数
+function mima_qiangdu(password,weishu) {
+	password = password.trim();
+    const hasNumber = /\d/.test(password);
+    const hasLetter = /[a-zA-Z]/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    const length = password.length;
+    //const str = `密码:[${password}]是一个`
+    if (hasNumber && hasLetter && hasSpecialChar && length >= weishu) {
+        return 4;
+    } else if (hasNumber && hasLetter && length >= weishu) {
+        return 3;
+    } else if (hasLetter && length >= weishu) {
+        return 2;
+    } else if (hasSpecialChar && length >= weishu) {
+        return 2;
+    } else if (length >= weishu) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
